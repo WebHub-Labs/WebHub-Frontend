@@ -1,7 +1,13 @@
 
 
-import Navbar  from './navbar';
-import Header from './header';
+import Navbar  from './components/navbar';
+import Header from './components/header';
+import Videocontainer from './components/video';
+import Container from './components/container';
+import Footer from './components/footer';
+import Second from './components/secondcontainer';
+
+
 
 function App() {
   
@@ -9,6 +15,10 @@ function App() {
     <div className="App">
       <Navbar/>
       <Header/>
+      <Videocontainer/>
+      <Container/>
+      <Second/>
+      <Footer/>
     </div>
   );
 }

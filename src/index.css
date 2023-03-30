@@ -1,21 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
 
 * {
   
   margin: auto;
 }
 
-.navbar {
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  /* max-width: auto;
-  margin: auto; */
-  font-family:"Outfit" ;
-  border-bottom: 3px solid #000000;
-  background-color: #8EA7E9;
 
-}
 
 .navbar h1{
   color: #000000;
@@ -27,38 +18,146 @@
   padding-left: 500px;
 }
 
-.navbar a {
+.navbar button{
   margin-left: 16px;
   text-decoration: none;
-  padding: 5px;
-  font-weight: 550;
+  padding: 5px 10px;
+  font-weight: 580;
   color: #000000;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  font-family:"Outfit" ;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 30px;
+  cursor: pointer;
 }
 
-.navbar a:hover {
+.navbar button:hover {
+  background-color:rgba(100, 148, 237, 0.507);
   color: #FFF2F2;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24),0 8px 40px 0 rgba(0,0,0,0.19);
+
+}
+
+.navbar > button:hover {
+  background-color: #FFF2F2 ;
+}
+
+.navbar {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  /* max-width: auto;
+  margin: auto; */
+  font-family:"Outfit" ;
+  border-bottom: 3px solid #000000;
+  background-color: #8ea6e9e0;
+
+}
+
+.navbar img{
+  width: 100px;
 }
 
 .header{
-  background-color:#E5E0FF ;
+  background-color:#e5e0ffcc ;
   font-family: "Outfit";
   color: #000000;
   margin: auto;
-  padding: 120px;
+  padding: 200px;
   border-bottom:3px solid #000000;
   text-align: center;
 }
 
 .header h2{
   
-  font-family: "Outfit";
-  font-weight: bold;
-  font-size: large;
+  
+  font-weight: 800;
+  font-size: 40px;
   padding-bottom: 5px;
 }
 
 .header p{
-  
+  padding-top: 5px;
   font-weight: 5;
-  font-size: 10px;
+  font-size: 12px;
+}
+
+.Videocontainer{
+  background-color: #ffcefe9e;
+  
+  border-bottom:3px solid #000000;
+}
+
+.Videocontainer img{
+  
+  display: block;
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.Videocontainer h2{
+  font-family: "Outfit";
+  font-weight: 700;
+  font-size: 35px;
+  padding: 25px;
+  color: #515F96;
+  text-align: center;
+}
+
+.container1{
+  background-color: #d9d9d911;
+  margin: auto;
+  border-bottom:3px solid #000000;
+  height: 400px;
+
+}
+
+.container1 h2{
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  
+  font-size: 30px;
+  padding: 40px;
+  text-align: center;
+}
+
+ .container_1{
+  border-bottom:3px solid #000000;
+  padding: 120px;
+  background-color: #FFF2F2;
+  font-family: 'Outfit';
+} */
+
+.container_1 h1{
+  font-weight: 500;
+  font-size: 40px;
+}
+
+.container_1 h2{
+  font-size: 12px;
+  font-weight: 100;
+} 
+
+
+.footer{
+  padding: 80px;
+  background-color: #4c4845;
+  color: white;
+  font-family: 'Outfit';
+  font-size: 12px;
+
+}
+
+.footer .grid-container 
+{
+  display: grid;
+}
+
+.grid-item{
+  padding: 10px;
 }
