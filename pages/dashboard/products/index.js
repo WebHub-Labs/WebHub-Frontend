@@ -1,29 +1,32 @@
 import React, { useState } from "react";
-import Header from "../components/header";
+import Header from "@/components/header";
 
 import Modal from "react-modal";
-import Table from "../components/table";
-import Layout from "../components/layout";
+import Table from "@/components/table";
+import Layout from "@/components/layout";
 
 import "flowbite";
 
 const Products = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [imageSrc, setImageSrc] = useState();
+  const [uploadData, setUploadData] = useState();
 
   const [formValues, setFormValues] = useState({
     name: "",
     color: "",
     category: "",
     price: "",
+    image: "",
   });
 
-  const { name, color, category, price } = formValues;
+  const { name, color, category, price, image } = formValues;
 
   const [inputarr, setInputarr] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setInputarr([...inputarr, { name, color, category, price }]);
+    setInputarr([...inputarr, { name, color, category, price, image }]);
 
     const createdProduct = await fetch("/api/ProductsAPI", {
       method: "POST",
@@ -37,9 +40,48 @@ const Products = () => {
     console.log(data);
   };
 
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const fileInput = Array.from(form.elements).find(
+      ({ name }) => name === "file"
+    );
+
+    const formData = new FormData();
+
+    for (const file of fileInput.files) {
+      formData.append("file", file);
+    }
+
+    formData.append("upload_preset", "my-uploads");
+
+    const data = await fetch(
+      "https://api.cloudinary.com/v1_1/dir7pptxd/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    ).then((r) => r.json());
+
+    setImageSrc(data.secure_url);
+    setUploadData(data);
+    console.log(data);
+  };
+
   function handleChange(e) {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
+  }
+
+  function handleOnChange(e) {
+    const reader = new FileReader();
+    reader.onload = function (onLoadEvent) {
+      setImageSrc(onLoadEvent.target.result);
+      setUploadData(undefined);
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
   }
 
   const handleonDelte = (i) => {
@@ -121,7 +163,6 @@ const Products = () => {
                 value={formValues.name}
                 name="name"
                 onChange={handleChange}
-                // placeholder="eg:Clothing"
               />
             </div>
             <div className="mb-6">
@@ -169,9 +210,30 @@ const Products = () => {
                 value={formValues.price}
                 name="price"
                 onChange={handleChange}
-                // placeholder="eg:Clothing"
               />
             </div>
+            {/* <div className="mb-6">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="Category Image"
+              ></label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="file"
+                name="file"
+
+                // placeholder="eg:Clothing"
+              />
+              <img src={imageSrc} />
+
+              {imageSrc && !uploadData && <button>Upload Files</button>}
+
+              {uploadData && (
+                <code>
+                  <pre>{JSON.stringify(uploadData, null, 2)}</pre>
+                </code>
+              )}
+            </div> */}
             <div className="flex items-end ">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-3 rounded focus:outline-none focus:shadow-outline"
@@ -179,6 +241,37 @@ const Products = () => {
               >
                 Save
               </button>
+            </div>
+          </form>
+          <form
+            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            onSubmit={handleOnSubmit}
+            onChange={handleOnChange}
+            method="post"
+          >
+            <div className="mb-6">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="Category Image"
+              ></label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="file"
+                name="file"
+              />
+              <img src={imageSrc} />
+
+              {imageSrc && !uploadData && (
+                <p>
+                  <button>Upload Files</button>
+                </p>
+              )}
+
+              {uploadData && (
+                <code>
+                  <pre>{JSON.stringify(uploadData, null, 2)}</pre>
+                </code>
+              )}
             </div>
           </form>
         </div>

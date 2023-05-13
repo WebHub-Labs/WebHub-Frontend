@@ -1,3 +1,5 @@
+"use client";
+
 import React, { use, useState } from "react";
 
 const Buttons = ({ name }) => {

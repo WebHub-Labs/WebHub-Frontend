@@ -20,7 +20,7 @@ const SideMenu = () => (
         </li>
         <li>
           <Link
-            href="/products"
+            href="/dashboard/products"
             className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800"
           >
             <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
@@ -31,7 +31,7 @@ const SideMenu = () => (
         </li>
         <li>
           <Link
-            href="/categories"
+            href="/dashboard/categories"
             className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800"
           >
             <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
@@ -42,7 +42,7 @@ const SideMenu = () => (
         </li>
         <li>
           <Link
-            href="/store"
+            href="/dashboard/store"
             className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800"
           >
             <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
@@ -53,7 +53,7 @@ const SideMenu = () => (
         </li>
         <li>
           <Link
-            href="/orders"
+            href="/dashboard/orders"
             className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800"
           >
             <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">

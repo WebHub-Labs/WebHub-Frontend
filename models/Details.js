@@ -1,9 +1,9 @@
-import { Schema, model, models } from "mongoose";
+import mongoose from "mongoose";
 
-const DetailsSchema = new Schema({
-  name: { type: String, required: true },
+const DetailsSchema = new mongoose.Schema({
+  name: String,
 });
 
-const Details = models.Details || model("Details", DetailsSchema);
+const DetailsModel = mongoose.model("Details", DetailsSchema);
 
-export default Details;
+export default DetailsModel;
