@@ -1,58 +1,132 @@
-import React, { useState } from "react";
-import {useRouter} from 'next/router';
-import axios from 'axios'
-import { Box } from "@mui/material";
-import Form from "../components/Form";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import {
+  Box,
+  Card,
+  CardContent,
+  TextField,
+  Button,
+  Typography,
+  Container,
+  Alert,
+  CircularProgress,
+} from "@mui/material";
+import { useAuth } from "../contexts/AuthContext";
 
-function Login() {
-  const router = useRouter()
-  const [userdata, setUserData] = useState({
+const Login = () => {
+  const [formData, setFormData] = useState({
     user_email: "",
     user_password: "",
   });
+  const [error, setError] = useState("");
+  const { login, loading } = useAuth();
+  const router = useRouter();
 
-  const getData = (form_type1, user_val1, form_type2, user_val2) => {
-    if (
-      form_type1 === "email" &&
-      form_type2 === "password" &&
-      user_val1 !== "" &&
-      user_val2 !== ""
-    ) {
-      setUserData({
-        ...userdata,
-        user_email: user_val1,
-        user_password: user_val2,
-      });
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    setError("");
+  };
 
-      axios
-        .post("http://localhost:5000/login", userdata)
-        .then((res) => {
-          localStorage.setItem("response", JSON.stringify(res));
-          router.push("/");
-        });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    const result = await login(formData);
+    if (result.success) {
+      router.push("/dashboard");
+    } else {
+      setError(result.error);
     }
   };
 
   return (
-    <div className="min-h-screen ">
-      <Box className="bg-[#FFCEFE] h-[100vh] overflow-hidden ">
-        <div
-          className={`bg-[#FFE70B] min-h-[40vh] w-[53%] absolute translate-x-[50%] translate-y-[50%] border-2 border-black  transition ease-in-out delay-450 `}
-        >
-          <Form
-            type1="email"
-            type2="password"
-            title="It's quiet secrent"
-            subtitle="Make sure to enter correct information"
-            value1="email"
-            value2="password"
-            name1="email"
-            name2="password"
-            onSubmit={getData}
-          />
-        </div>
+    <Container component="main" maxWidth="sm">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Card sx={{ width: "100%", maxWidth: 400 }}>
+          <CardContent sx={{ p: 4 }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                mb: 3,
+              }}
+            >
+              <Typography component="h1" variant="h4" gutterBottom>
+                WebHub
+              </Typography>
+              <Typography variant="h6" color="text.secondary">
+                Sign in to your account
+              </Typography>
+            </Box>
+
+            {error && (
+              <Alert severity="error" sx={{ mb: 2 }}>
+                {error}
+              </Alert>
+            )}
+
+            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="user_email"
+                label="Email Address"
+                name="user_email"
+                autoComplete="email"
+                autoFocus
+                value={formData.user_email}
+                onChange={handleChange}
+                disabled={loading}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="user_password"
+                label="Password"
+                type="password"
+                id="user_password"
+                autoComplete="current-password"
+                value={formData.user_password}
+                onChange={handleChange}
+                disabled={loading}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                disabled={loading}
+              >
+                {loading ? <CircularProgress size={24} /> : "Sign In"}
+              </Button>
+              <Box textAlign="center">
+                <Typography variant="body2" color="text.secondary">
+                  Don't have an account?{" "}
+                  <Link href="/signup" style={{ color: "#1976d2" }}>
+                    Sign up
+                  </Link>
+                </Typography>
+              </Box>
+            </Box>
+          </CardContent>
+        </Card>
       </Box>
-    </div>
+    </Container>
   );
-}
+};
+
 export default Login;

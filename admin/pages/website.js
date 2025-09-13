@@ -29,20 +29,17 @@ const Website = () => {
           DetailsResult.fetchedDetails &&
           DetailsResult.fetchedDetails.length > 0 && (
             <ul>
-                                  
               {DetailsResult.fetchedDetails.map((detail) => (
                 <li key={detail._id}>
-                                        <p>{detail.name}</p>
-                                                             
+                  <p>{detail.name}</p>
                 </li>
               ))}
-                              
             </ul>
           )
         }
       />
       <WebProducts />
-              
+
       <WebFooter />
     </div>
   );

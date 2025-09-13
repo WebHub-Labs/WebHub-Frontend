@@ -1,5 +1,5 @@
 {
-  "name": "webhub",
+  "name": "webhub-admin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,24 +12,27 @@
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.2",
+    "@mui/icons-material": "^5.13.2",
+    "@mui/x-data-grid": "^6.10.2",
+    "@mui/x-date-pickers": "^6.10.2",
     "@types/node": "18.15.13",
     "@types/react": "18.0.38",
     "@types/react-dom": "18.0.11",
     "axios": "^1.4.0",
-    "cors": "^2.8.5",
-    "eslint": "8.39.0",
-    "eslint-config-next": "13.3.1",
-    "express": "^4.18.2",
-    "flowbite": "^1.6.5",
-    "mongoose": "^7.1.0",
+    "chart.js": "^4.3.0",
+    "react-chartjs-2": "^5.2.0",
+    "date-fns": "^2.30.0",
+    "react-hook-form": "^7.45.4",
+    "react-hot-toast": "^2.4.1",
+    "js-cookie": "^3.0.5",
     "next": "13.3.1",
-    "next-cloudinary": "^4.12.0",
-    "nodemon": "^2.0.22",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-modal": "^3.16.1"
+    "react-modal": "^3.16.1",
+    "recharts": "^2.7.2"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.3",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2"
